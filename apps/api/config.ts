@@ -1,11 +1,15 @@
+function formatKey(key: string): string {
+    return key.includes('\n') ? key : key.replace(/\\n/g, '\n');
+}
 
-export const JWT_PUBLIC_KEY = process.env.JWT_PUBLIC_KEY || `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxYRjjCo+ZhdDrsVduRaj
-o4U9XNYbUxG4LBgtrHUpvMrRda6yXXfuecC0zwdF4O16ZNp9LMyy2bllXG8HOWyw
-ac/r/9Zt98A9jMUEKq/AhRvaRaavr9jMFceJNTebFMOnzPRZGIhMWWOGPsrwqWLa
-JbMtnAd2IlQc4MNJmns2NeaPmujDysZDmN5BwLd0LzTaktOFsrVCFYu7MiL7sYi9
-229OovGxu55Y1qpekwt42nuipbpZEx59FdAIpJCgjsp8GeqavC5ySWuhRbKGTO+e
-qiBV0S9m134FuGRc67HEYcr7BkTSFwF4pD/L2culHEBaRedilGdRbNAGFAQhN4mS
-yQIDAQAB
------END PUBLIC KEY-----
-`;
+const rawKey = process.env.JWT_PUBLIC_KEY || `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlYQtpDLaLt61wXomgoKi
+xQYZSXkobo9NqQIj28S2BVRdlyp2feo76ZyCF7OAHfb09XGKKlySS74V8Qs3MCME
+9EOp4mWYY3JG+aHoJtB5slHhKGaFyWfYSECzsCn4pkqRZsXS479PcdBRMqsH1Uqt
+QQgWox5N+ZuS5IrAtYRlr+TMhGv+G2qwfWs3dUXaqkDNvgHbAzH8sFmlIidfgaKP
+jXTXrC0eNZAkm0EfI8/ivtmM6O7XYUnOTB/OX5oNjhuMPUYfAENd605kfL1Mcn/M
+xTToLgFv2dKS31Qkr5N8MZ5J6VJswSZ2Bv8j6xC419dR71upSJdgrWe58euTS2do
+7QIDAQAB
+-----END PUBLIC KEY-----`;
+
+export const JWT_PUBLIC_KEY = formatKey(rawKey);

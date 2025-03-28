@@ -1,7 +1,5 @@
 "use client";
-import { API_BACKEND_URL } from "@/config";
-import { useAuth } from "@clerk/nextjs";
-import axios from "axios";
+import { useApi } from "@/utils/api";
 import { useEffect, useState } from "react";
 
 interface Website {
@@ -16,18 +14,16 @@ interface Website {
 }
 
 export function useWebsites() {
-    const { getToken } = useAuth();
+    const { api } = useApi();
     const [websites, setWebsites] = useState<Website[]>([]);
 
-    async function refreshWebsites() {    
-        const token = await getToken();
-        const response = await axios.get(`${API_BACKEND_URL}/api/v1/websites`, {
-            headers: {
-                Authorization: token,
-            },
-        });
-
-        setWebsites(response.data.websites);
+    async function refreshWebsites() {
+        try {
+            const response = await api.get(`/api/v1/websites`);
+            setWebsites(response.data.websites);
+        } catch (error) {
+            console.error("Error fetching websites:", error);
+        }
     }
 
     useEffect(() => {
@@ -41,5 +37,4 @@ export function useWebsites() {
     }, []);
 
     return { websites, refreshWebsites };
-
 }

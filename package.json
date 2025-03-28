@@ -22,6 +22,8 @@
     "packages/*"
   ],
   "dependencies": {
+    "@solana/web3.js": "^1.98.0",
+    "bigint": "^0.4.2",
     "prisma": "^6.5.0"
   }
 }

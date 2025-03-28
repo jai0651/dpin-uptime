@@ -6,6 +6,12 @@ import {
 } from '@clerk/nextjs'
 import { Appbar } from "../components/Appbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CLERK_PUBLISHABLE_KEY } from "@/config";
+
+if (!CLERK_PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key")
+}
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ClerkProvider>
+      <ClerkProvider  publishableKey={CLERK_PUBLISHABLE_KEY} afterSignOutUrl="/">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

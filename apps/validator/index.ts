@@ -35,7 +35,7 @@ async function main() {
             type: 'signup',
             data: {
                 callbackId,
-                ip: '127.0.0.1',
+                ip: '127.0.0.1', // TODO: get ip
                 publicKey: keypair.publicKey,
                 signedMessage,
             },

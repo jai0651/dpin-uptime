@@ -12,6 +12,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bigint": "^0.4.2",
     "prisma": "^6.5.0"
   },
   "prisma": {

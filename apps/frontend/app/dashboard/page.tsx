@@ -2,9 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import { ChevronDown, ChevronUp, Globe, Plus, Moon, Sun } from 'lucide-react';
 import { useWebsites } from '@/hooks/useWebsites';
-import axios from 'axios';
-import { API_BACKEND_URL } from '@/config';
-import { useAuth } from '@clerk/nextjs';
+import { useApi } from '@/utils/api';
 
 type UptimeStatus = "good" | "bad" | "unknown";
 
@@ -125,7 +123,7 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {websites, refreshWebsites} = useWebsites();
-  const { getToken } = useAuth();
+  const { api } = useApi();
 
   const processedWebsites = useMemo(() => {
     return websites.map(website => {
@@ -234,18 +232,13 @@ function App() {
                 return;
             }
 
-            const token = await getToken();
-            setIsModalOpen(false)
-            axios.post(`${API_BACKEND_URL}/api/v1/website`, {
-                url,
-            }, {
-                headers: {
-                    Authorization: token,
-                },
-            })
-            .then(() => {
+            setIsModalOpen(false);
+            try {
+                await api.post(`/api/v1/website`, { url });
                 refreshWebsites();
-            })
+            } catch (error) {
+                console.error("Error adding website:", error);
+            }
         }}
       />
     </div>
