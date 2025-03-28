@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Validator UI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Validator Connection UI</h1>
+    
+    <div class="form-container">
+      <h2>Validator Information</h2>
+      <form id="validator-form">
+        <div class="form-group">
+          <label for="name">Validator Name</label>
+          <input type="text" id="name" placeholder="Enter validator name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="privateKey">Private Key (JSON array format)</label>
+          <textarea id="privateKey" placeholder="Paste your private key (JSON array)" rows="4" required></textarea>
+          <small>Private key will be used for signing messages and never transmitted</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="serverUrl">Server URL</label>
+          <input type="text" id="serverUrl" placeholder="wss://your-server-url" required value="ws://localhost:8081">
+        </div>
+        
+        <div class="buttons">
+          <button type="submit" id="connect-btn">Connect</button>
+          <button type="button" id="disconnect-btn" disabled>Disconnect</button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="status-container">
+      <h2>Connection Status</h2>
+      <div id="status-indicator" class="status disconnected">Disconnected</div>
+      <div id="status-message"></div>
+      <div id="validator-id"></div>
+    </div>
+    
+    <div class="validation-container">
+      <h2>Validation Results</h2>
+      <div id="validation-results"></div>
+    </div>
+    
+    <div class="messages-container">
+      <h2>Server Messages</h2>
+      <div id="messages"></div>
+    </div>
+  </div>
+  
+  <script src="renderer.js"></script>
+</body>
+</html> 

@@ -27,7 +27,6 @@ function getKey(header: jwt.JwtHeader, callback: jwt.SigningKeyCallback): void {
     }
     try {
       const signingKey = key.getPublicKey();
-      console.log('Successfully retrieved signing key for kid:', header.kid);
       callback(null, signingKey);
     } catch (keyError) {
       console.error('Error processing signing key:', keyError);
