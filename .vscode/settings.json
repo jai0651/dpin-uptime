@@ -1,0 +1,4 @@
+{
+    "terminal.integrated.shellIntegration.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
+}
